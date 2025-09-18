@@ -1,1 +1,101 @@
 # seo-quiz
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Keyword Analysis Assessment</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; }
+  h1 { text-align: center; }
+  .section { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+  .question { margin-bottom: 15px; }
+  button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 6px; cursor: pointer; background: #007bff; color: #fff; }
+  button:hover { background: #0056b3; }
+  textarea { width: 100%; height: 80px; }
+  .result { background: #e9ffe9; padding: 15px; margin-top: 20px; border-radius: 8px; }
+</style>
+</head>
+<body>
+<h1>SEO Keyword Analysis Assessment</h1>
+<form id="quizForm">
+  <div class="section">
+    <h2>Section A – Multiple Choice (1 point each)</h2>
+    <div class="question">
+      <p>1. Which of the following tools can help you discover new SEO keywords by analyzing community discussions?</p>
+      <label><input type="radio" name="q1" value="a"> Quora</label><br>
+      <label><input type="radio" name="q1" value="b"> SEMrush</label><br>
+      <label><input type="radio" name="q1" value="c"> AnswerThePublic</label><br>
+      <label><input type="radio" name="q1" value="d"> All of the above</label>
+    </div>
+    <div class="question">
+      <p>2. What is the main purpose of keyword clustering?</p>
+      <label><input type="radio" name="q2" value="a"> To group semantically related keywords for better content targeting</label><br>
+      <label><input type="radio" name="q2" value="b"> To remove low-volume keywords</label><br>
+      <label><input type="radio" name="q2" value="c"> To track backlinks</label><br>
+      <label><input type="radio" name="q2" value="d"> To identify website errors</label>
+    </div>
+    <div class="question">
+      <p>3. Keyword intent is important because:</p>
+      <label><input type="radio" name="q3" value="a"> It reveals the user's search purpose and helps create the right content</label><br>
+      <label><input type="radio" name="q3" value="b"> It increases CPC</label><br>
+      <label><input type="radio" name="q3" value="c"> It helps improve image search</label><br>
+      <label><input type="radio" name="q3" value="d"> None of these</label>
+    </div>
+    <div class="question">
+      <p>4. Which platform is most suitable for manual competitor keyword analysis?</p>
+      <label><input type="radio" name="q4" value="a"> SEMrush</label><br>
+      <label><input type="radio" name="q4" value="b"> Photoshop</label><br>
+      <label><input type="radio" name="q4" value="c"> Google Docs</label><br>
+      <label><input type="radio" name="q4" value="d"> Canva</label>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Section B – Short Answer</h2>
+    <div class="question">
+      <p>5. Take any one keyword you discovered for rankyouhigher.in. Identify its type (short-tail / long-tail) and its search intent (informational / commercial / navigational).</p>
+      <textarea name="q5"></textarea>
+    </div>
+    <div class="question">
+      <p>6. Explain how you would find new keywords for rathinamcollege.ac.in using Quora, Reddit, and AnswerThePublic.</p>
+      <textarea name="q6"></textarea>
+    </div>
+    <div class="question">
+      <p>7. Describe the process of manually analyzing the top 5 competitor keywords for a website.</p>
+      <textarea name="q7"></textarea>
+    </div>
+    <div class="question">
+      <p>8. From a list of keywords, how would you decide which belong in the same cluster? (What key factor should come first?)</p>
+      <textarea name="q8"></textarea>
+    </div>
+  </div>
+  <div class="section">
+    <h2>Section C – Case Study Task</h2>
+    <div class="question">
+      <p>9. For the website rankyouhigher.in: Pick any 3 potential SEO keywords, identify their intent and keyword type, and suggest a cluster name they could belong to.</p>
+      <textarea name="q9"></textarea>
+    </div>
+  </div>
+  <button type="button" onclick="submitQuiz()">Submit</button>
+</form>
+<div id="result" class="result" style="display:none;"></div>
+<script>
+function submitQuiz(){
+  const answers = {q1:'d', q2:'a', q3:'a', q4:'a'};
+  let score = 0;
+  for(let i=1;i<=4;i++){
+    let val = document.querySelector('input[name="q'+i+'"]:checked');
+    if(val && val.value === answers['q'+i]) score++;
+  }
+  let textResponses = '';
+  for(let i=5;i<=9;i++){
+    let val = document.querySelector('[name="q'+i+'"]');
+    textResponses += '\nQ'+i+': '+(val.value.trim() || '[No Answer]');
+  }
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+  resultDiv.innerHTML = `<h2>Your Score: ${score} / 4 (MCQs only)</h2><p><b>Your Responses:</b><pre>${textResponses}</pre></p>`;
+}
+</script>
+</body>
+</html>
